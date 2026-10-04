@@ -1,0 +1,28 @@
+version: "2"
+
+sql:
+  - engine: "postgresql"
+
+    schema: "internal/db/migrations"
+    queries: "internal/db/queries"
+
+    gen:
+      go:
+        package: "sqlc"
+        out: "internal/db/sqlc"
+        sql_package: "pgx/v5"
+
+        overrides:
+          - db_type: "text"
+            nullable: false
+            go_type: "string"
+
+          - db_type: "int4"
+            nullable: false
+            go_type: "int32"
+
+          - db_type: "int8"
+            nullable: false
+            go_type: "int64"
+
+
